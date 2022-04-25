@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
+
+.card-body {
+  padding: 0px;
+  position: relative;
+  background: black;
+  margin: 10px;
+  width: 250px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 10px;
+}
+
+.card-body img {
+  width: 90%;
+  height: 65%;
+  border-radius: 10px 0;
+}
+
+.movie-info {
+  color: white;
+  position: absolute;
+  bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-evenly;
+  justify-content: space-evenly;
+  padding: 0 13px;
+  font-family: 'Oswold', sans-serif;
+  letter-spacing: 2px;
+}
+
+
+
+@media (max-width: 700px) {
+  .card-body {
+    width: 200px;
+  }
+}

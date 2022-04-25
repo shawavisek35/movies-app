@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&display=swap');
+
+.header {
+  display: flex;
+  justify-content: center;
+  background: #0E185F;
+  color: white;
+  padding: 10px;
+  font-size: 3vw;
+  letter-spacing: 2px;
+  font-family: 'Noto Sans', sans-serif;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  scroll-behavior: smooth;
+}
+
+/* .trending {
+  margin-top: 100px;
+} */
+
+@media (max-width: 800px) {
+  .header {
+    font-size: 6vw;
+  }
+}

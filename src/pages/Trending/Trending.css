@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+.trending-container, .movies-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pageTitle {
+  font-family: 'Bree Serif', serif;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
