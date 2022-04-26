@@ -1,25 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ContentCard from "../../components/ContentCard/ContentCard";
 import PaginationComponent from "../../components/Pagination/PaginationComponent";
+import WithContent from "../WithContent/WithContent";
 import "./Trending.css";
+const dataApi = `${process.env.REACT_APP_API_HOST}/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`;
 
-export default function Trending() {
-  const [content, setContent] = useState([]);
-  const [ page, setPage ] = useState(1);
 
-  
-  useEffect(() => {
-    const fetchTrendingContent = async () => {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API_HOST}/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
-      );
-      console.log(data);
-      setContent(data.results);
-    };
-    fetchTrendingContent();
-    window.scroll(0, 0);
-  }, [page]);
+function Trending({content, page, setPage}) {
 
   return (
     <div className="content">
@@ -44,3 +31,5 @@ export default function Trending() {
     </div>
   );
 }
+
+export default WithContent(Trending, dataApi);

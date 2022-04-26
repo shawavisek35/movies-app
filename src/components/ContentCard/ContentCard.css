@@ -6,7 +6,7 @@
   background: black;
   margin: 10px;
   width: 250px;
-  height: 400px;
+  height: 410px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -14,22 +14,19 @@
 }
 
 .card-body img {
-  width: 90%;
-  height: 65%;
+  width: 97%;
+  height: 50%;
   border-radius: 10px 0;
 }
 
 .movie-info {
   color: white;
   position: absolute;
-  bottom: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: space-evenly;
-  justify-content: space-evenly;
-  padding: 0 13px;
+  bottom: 5px;
+  text-align: center;
   font-family: 'Oswold', sans-serif;
   letter-spacing: 2px;
+  font-size: 12px;
 }
 
 
