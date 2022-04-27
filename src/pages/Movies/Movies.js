@@ -1,14 +1,23 @@
 import React from "react";
 import ContentCard from "../../components/ContentCard/ContentCard";
+import Genre from "../../components/Genre/Genre";
 import PaginationComponent from "../../components/Pagination/PaginationComponent";
 import WithContent from "../WithContent/WithContent";
 const dataApi = `${process.env.REACT_APP_API_HOST}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
-function Movies({content, page, setPage, totalPages}) {
+function Movies({content, page, setPage, totalPages, genre, setGenre, selectedGenre, handleGenreAddition, handleGenreDeletion}) {
 
   return (
     <div className="content">
       <h1 className="pageTitle">Movies</h1>
+      <Genre 
+        genre={genre}
+        selectedGenre={selectedGenre}
+        setGenre={setGenre}
+        handleGenreAddition={handleGenreAddition}
+        handleGenreDeletion={handleGenreDeletion}
+        mediaType='movie'
+      />
       <div className="movies-container">
         {content.length > 0 &&
           content.map((c) => (
@@ -24,7 +33,9 @@ function Movies({content, page, setPage, totalPages}) {
             />
           ))}
       </div>
-      <PaginationComponent pageNo={page} changePage={setPage} totalPages={totalPages} />
+      {
+        totalPages>1 && (<PaginationComponent pageNo={page} changePage={setPage} totalPages={totalPages} />)
+      }
     </div>
   );
 }

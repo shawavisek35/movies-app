@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import useSelectedGenre from "../../CustomHooks/GenreHook";
 
 //Higher order function
 function WithContent(OldPage, dataApi) {
@@ -8,11 +9,14 @@ function WithContent(OldPage, dataApi) {
     const [content, setContent] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(10);
+    const [genre, setGenre] = useState([]);
+    const [selectedGenre, setSelectedGenre] = useState([]);
+    const genreForUrl = useSelectedGenre(selectedGenre);
 
     useEffect(() => {
       const fetchTvSeries = async () => {
         const { data } = await axios.get(
-          `${dataApi}&page=${page}`
+          `${dataApi}&page=${page}&with_genres=${genreForUrl}`
         );
         setTotalPages(data.total_pages);
         setContent(data.results);
@@ -20,8 +24,30 @@ function WithContent(OldPage, dataApi) {
 
       fetchTvSeries();
       window.scroll(0, 0);
-    }, [page]);
-    return <OldPage content={content} page={page} setPage={setPage} totalPages={totalPages} />;
+    }, [page, genreForUrl]);
+
+    const handleGenreAddition = (newGenre) => {
+      setSelectedGenre([...selectedGenre, newGenre]);
+      setGenre(genre.filter((g) => g.id !== newGenre.id));
+    }
+
+    const handleGenreDeletion = (newGenre) => {
+      setGenre([...genre, newGenre]);
+      setSelectedGenre(selectedGenre.filter((g) => g.id !== newGenre.id));
+    }
+
+    return <OldPage 
+      content={content} 
+      page={page} 
+      setPage={setPage} 
+      totalPages={totalPages} 
+      genre={genre}
+      selectedGenre={selectedGenre}
+      setGenre={setGenre}
+      setSelectedGenre={setSelectedGenre}
+      handleGenreAddition={handleGenreAddition}
+      handleGenreDeletion={handleGenreDeletion}
+    />;
   };
 }
 

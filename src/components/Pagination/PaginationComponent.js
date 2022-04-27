@@ -13,7 +13,6 @@ export default function PaginationComponent({ pageNo, changePage, totalPages }) 
   })
 
   const handleChange = (event, page) => {
-    console.log(page);
     changePage(page);
   }
 

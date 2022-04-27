@@ -1,13 +1,22 @@
 import ContentCard from "../../components/ContentCard/ContentCard";
+import Genre from "../../components/Genre/Genre";
 import PaginationComponent from "../../components/Pagination/PaginationComponent";
 import WithContent from "../WithContent/WithContent";
 const dataApi = `${process.env.REACT_APP_API_HOST}/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`;
 
-function TvSeries({content, page, setPage, totalPages}) {
+function TvSeries({content, page, setPage, totalPages, genre, setGenre, selectedGenre, handleGenreAddition, handleGenreDeletion}) {
 
   return (
     <div className="content">
       <h1 className="pageTitle">TV Series</h1>
+      <Genre 
+        genre={genre}
+        selectedGenre={selectedGenre}
+        setGenre={setGenre}
+        handleGenreAddition={handleGenreAddition}
+        handleGenreDeletion={handleGenreDeletion}
+        mediaType='tv'
+      />
       <div className="movies-container">
         {content.length > 0 &&
           content.map((c) => (
