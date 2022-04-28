@@ -12,16 +12,13 @@ export default function PaginationComponent({ pageNo, changePage, totalPages }) 
     },
   })
 
-  const handleChange = (event, page) => {
-    changePage(page);
-  }
-
   return (
     <ThemeProvider theme={darkTheme}>
       <div style={{marginTop: "30px"}}>
         <Stack spacing={2}
+        value={pageNo}
         >
-          <Pagination count={totalPages || 10} color="warning" onChange={handleChange} />
+          <Pagination count={totalPages || 10} color="warning" onChange={(event, page) => changePage(page)} />
         </Stack>
       </div>
     </ThemeProvider>

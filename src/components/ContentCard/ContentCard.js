@@ -10,11 +10,11 @@ export default function ContentCard({
   mediaType,
   title,
   vote,
-  date
-
+  date,
+  handleOpen
  }) {
   return (
-    <div className='card-body'>
+    <div className='card-body' onClick={() => handleOpen(id, mediaType)}>
       <Badge className='badge' badgeContent={vote} color={vote > 6 ? "primary" : "secondary"} />
       <div className='poster-trending'>
         <Badge className='badge' badgeContent={`18+`} color={`warning`} 

@@ -1,0 +1,14 @@
+.search-container {
+  display: flex;
+}
+
+.search-area {
+  flex: 1;
+  margin-right: 10px !important;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}

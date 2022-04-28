@@ -1,0 +1,110 @@
+.modal-body {
+  display: flex;
+
+}
+
+.modal-img {
+  width: 700px;
+  height: 500px;
+}
+
+.modal-img img {
+  width: 100%;
+  height: 100%
+}
+
+.modal-box {
+  width: 500px !important;
+}
+
+.about-movie {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 30px;
+}
+
+.movie-overview {
+  width: 500px;
+  background: #404040;
+  padding: 20px;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+}
+
+.overview-title {
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+  font-size: 20px
+}
+
+.movie-desc {
+  letter-spacing: 1.5px;
+  display: flex;
+}
+
+.movie-desc span {
+  margin-left: 10px
+}
+
+.tagline {
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-left: 10px;
+}
+
+@media (max-width: 550px) {
+  .modal-img {
+    width: 400px;
+    height: 300px;
+  }
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .movie-overview {
+    width: 350px;
+  }
+  .about-movie {
+    margin: 20px 0px;
+  }
+}
+
+@media (min-width: 551px) and (max-width: 800px) {
+  .modal-img {
+    width: 450px;
+    height: 350px;
+  }
+
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .movie-overview {
+    width: 400px;
+  }
+  .about-movie {
+    margin: 20px 0px;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+  .modal-img {
+    width: 600px;
+    height: 400px;
+  }
+
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .movie-overview {
+    width: 550px;
+  }
+  .about-movie {
+    margin: 20px 0px;
+  }
+}

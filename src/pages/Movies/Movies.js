@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import ContentCard from "../../components/ContentCard/ContentCard";
 import Genre from "../../components/Genre/Genre";
+import ModalComponent from "../../components/Modal/ModalComponent";
 import PaginationComponent from "../../components/Pagination/PaginationComponent";
 import WithContent from "../WithContent/WithContent";
 const dataApi = `${process.env.REACT_APP_API_HOST}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
 function Movies({content, page, setPage, totalPages, genre, setGenre, selectedGenre, handleGenreAddition, handleGenreDeletion}) {
+
+  const [open, setOpen] = useState(false);
+  const [contentId, setContentId] = useState(null);
+  const [mediaType, setMediaType] = useState("");
+  const handleOpen = (id, mediaType) => {
+    setOpen(true);
+    setContentId(id);
+    setMediaType(mediaType);
+  }
+  const handleClose = () => {
+    setOpen(false);
+    setContentId(null);
+  }
 
   return (
     <div className="content">
@@ -30,9 +44,22 @@ function Movies({content, page, setPage, totalPages, genre, setGenre, selectedGe
               title={c.title || c.name}
               vote={c.vote_average}
               date={c.first_air_date || c.release_date}
+              handleOpen={handleOpen}
             />
           ))}
       </div>
+      {
+        open
+        ?
+        <ModalComponent 
+          open={open} 
+          handleClose={handleClose}
+          contentId={contentId}
+          mediaType={mediaType}
+        />
+        :
+        null
+      }
       {
         totalPages>1 && (<PaginationComponent pageNo={page} changePage={setPage} totalPages={totalPages} />)
       }
