@@ -102,7 +102,7 @@ export default function ModalComponent({open, handleClose, contentId, mediaType}
                         {
                           cast.length>0 && cast.slice(0,25).map((c) => {  
                             return(
-                              <Stack direction="row" spacing={2} sx={{ml: 1}}>
+                              <Stack direction="row" spacing={2} sx={{ml: 1}} key={c.name}>
                                 <Avatar alt={c.name} src={c.profile_path ? `${IMAGE_300}/${c.profile_path}` : `${UNAVAILABLE}`}/>
                               </Stack>
                             )
@@ -111,15 +111,19 @@ export default function ModalComponent({open, handleClose, contentId, mediaType}
                       </div>
                       </div>
                       <div style={{marginBottom: "20px"}}>
-                      <p className="overview-title">Genres</p>
-                        <Stack direction="row" spacing={1}>
+                        <p className="overview-title">Genres</p>
+                        <div style={{display: "flex", flexWrap: "wrap", marginLeft: "0px"}}>
                           <Chip label={mediaType==="tv" ? "TV Series" : "Movies"} color="primary" />
                           {
                             contentInfo.genres && contentInfo.genres.map((cg) => {
-                              return <Chip label={cg.name} color="primary" />
+                              return (
+                                <Stack direction="row" spacing={1} sx={{ml: 1}} key={cg.name}>
+                                  <Chip label={cg.name} color="primary" />
+                                </Stack>
+                              ) 
                             })
                           }
-                        </Stack>
+                        </div>
                       </div>
                       <Button
                         variant="contained"
