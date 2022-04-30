@@ -1,7 +1,6 @@
-import { Button, Tab, Tabs, TextField } from '@mui/material'
+import { Tab, Tabs, TextField } from '@mui/material'
 import React, { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { SearchOutlined } from '@mui/icons-material';
 import "./Search.css";
 import axios from "axios";
 import ContentCard from '../../components/ContentCard/ContentCard';
