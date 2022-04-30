@@ -74,9 +74,6 @@ export default function Search() {
               optimizedFetch(event.target.value);
             }}
           />
-          <Button variant="outlined" startIcon={<SearchOutlined />}>
-            Search
-          </Button>
         </div>
         <div className="tabs-container">
           <Tabs 
