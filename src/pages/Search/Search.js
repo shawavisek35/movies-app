@@ -7,6 +7,7 @@ import axios from "axios";
 import ContentCard from '../../components/ContentCard/ContentCard';
 import PaginationComponent from '../../components/Pagination/PaginationComponent';
 import ModalComponent from '../../components/Modal/ModalComponent';
+import useDebounce from '../../CustomHooks/useDebounce';
 
 export default function Search() {
 
@@ -38,16 +39,26 @@ export default function Search() {
   const [content, setContent] = useState([]);
   const [noOfPages, setNoOfPages] = useState(0);
 
+  const fetchData = async(text) => {
+    const { data } = await axios.get(`${process.env.REACT_APP_API_HOST}/search/${mediaType===0 ? 'movie' : 'tv'}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US${text.length===0 ? "" : `&query=${text}`}&page=1&include_adult=false`);
+    setContent(data.results);
+    setNoOfPages(data.total_pages);
+    setSearchText(text);
+  }
+
+  const optimizedFetch = useDebounce(fetchData);
+
+  
   useEffect(() => {
     const fetchContent = async() => {
       const { data } = await axios.get(`${process.env.REACT_APP_API_HOST}/search/${mediaType===0 ? 'movie' : 'tv'}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US${searchText.length===0 ? "" : `&query=${searchText}`}&page=${page}&include_adult=false`);
       setContent(data.results);
       setNoOfPages(data.total_pages);
     }
-
     window.scroll(0, 0);  
     fetchContent();
-  }, [searchText, page, mediaType])
+    // eslint-disable-next-line
+  }, [page, mediaType])
 
   return (
     <>
@@ -58,8 +69,10 @@ export default function Search() {
             label={"Search"} 
             variant="outlined" 
             className='search-area'
-            value={searchText}
-            onChange={(event) => setSearchText(event.target.value)}
+            //value={searchText}
+            onChange={(event) => {
+              optimizedFetch(event.target.value);
+            }}
           />
           <Button variant="outlined" startIcon={<SearchOutlined />}>
             Search
